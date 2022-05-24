@@ -16,7 +16,7 @@ function consultar() {
     if (consulta == 1) {
         document.getElementById("title").innerText = "Solicitudes de laboratorio pendientes";
 
-        axios.get('http://127.0.0.1:3000/inner')
+        axios.get('http://isaacpzb.pythonanywhere.com/inner')
             .then(function (response) {
                 console.log(response)
                 document.getElementById("cuerpoInner").innerHTML = "";
@@ -56,7 +56,7 @@ function consultar() {
     } else if (consulta == 2) {
         document.getElementById("title").innerText = "Solicitudes de laboratorio pendientes y con resultados";
 
-        axios.get('http://127.0.0.1:3000/left')
+        axios.get('http://isaacpzb.pythonanywhere.com/left')
             .then(function (response) {
                 console.log(response)
                 document.getElementById("cuerpoLeft").innerHTML = "";
@@ -108,7 +108,7 @@ function consultar() {
     } else if (consulta == 3) {
         document.getElementById("title").innerText = "Promedio de edad entre los pacientes";
 
-        axios.get('http://127.0.0.1:3000/avg')
+        axios.get('http://isaacpzb.pythonanywhere.com/avg')
             .then(function (response) {
                 console.log(response)
                 document.getElementById("cuerpoAvg").innerHTML = "";
@@ -132,7 +132,7 @@ function consultar() {
     } else if (consulta == 4) {
         document.getElementById("title").innerText = "Máxima edad entre los pacientes";
 
-        axios.get('http://127.0.0.1:3000/max')
+        axios.get('http://isaacpzb.pythonanywhere.com/max')
             .then(function (response) {
                 console.log(response)
                 document.getElementById("cuerpoMax").innerHTML = "";
@@ -156,7 +156,7 @@ function consultar() {
     } else if (consulta == 5) {
         document.getElementById("title").innerText = "Minima edad entre los pacientes";
 
-        axios.get('http://127.0.0.1:3000/min')
+        axios.get('http://isaacpzb.pythonanywhere.com/min')
             .then(function (response) {
                 console.log(response)
                 document.getElementById("cuerpoMin").innerHTML = "";
@@ -180,7 +180,7 @@ function consultar() {
     } else if (consulta == 6) {
         document.getElementById("title").innerText = "Cantidad de pacientes ingresados por el sistema";
 
-        axios.get('http://127.0.0.1:3000/count')
+        axios.get('http://isaacpzb.pythonanywhere.com/count')
             .then(function (response) {
                 console.log(response)
                 document.getElementById("cuerpoCount").innerHTML = "";
@@ -204,7 +204,7 @@ function consultar() {
     } else if (consulta == 7) {
         document.getElementById("title").innerText = "Suma de las edades de los pacientes";
 
-        axios.get('http://127.0.0.1:3000/sum')
+        axios.get('http://isaacpzb.pythonanywhere.com/sum')
             .then(function (response) {
                 console.log(response)
                 document.getElementById("cuerpoSum").innerHTML = "";
