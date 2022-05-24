@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--CSS-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!--JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+    <link rel="icon" href="../img/microscope.png">
+    <title>Lab. Clinico Consultas</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="../js/login.js"></script>
+    <script src="../js/consultas.js"></script>
+
+</head>
+
+<body style="background-color: lightblue;">
+    <!-- Encabezado-->
+    <div style="background-color: white;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2 col-md-2 col-sm-2 col-1">
+                    <img src="../img/My project (1).png" class="rounded float-sm-start"
+                        style=" margin-left: 30%; margin-top: 20px;" width="200px" height="85px">
+                </div>
+                <div class="col-lg-10 col-md-10 col-sm-10 col-11"
+                    style="margin-top: 40px; margin-right: auto; margin-bottom: 20px;">
+                    <nav class="navbar navbar-expand-lg navbar-light">
+                        <a class="navbar-brand" href="#"></a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                            aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav mx-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="">INICIO</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="crud.html">INGRESAR RESULTADOS</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="">CONSULTAS</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="">HELPS</a>
+                                </li>
+                                <hr>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="../index.html">| CERRAR SESIÓN |</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fin encabezado-->
+
+    <!-- Cuerpo, informacion del bacteriologo-->
+    <br>
+    <div class="container" style="background-color: white;">
+        <div class="row" style="margin-left: 10px;">
+            <div style="margin-top: 20px; ">
+                <img src="../img/ejeUser.jfif" width="120px"
+                    style="opacity: 80%; min-width: 105px; border-radius: 100%; float: left; margin-right: 20px;"
+                    alt="">
+                <h2 id="nombre" style="opacity: 70%; margin-top: 20px;">
+                    <script>
+                        us();
+                    </script>
+                </h2>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 " style="margin-top: 20px; text-align: end;">
+                <h5 style="opacity: 80%; margin-right: 20px;"> Bacteriologo</h5>
+            </div>
+        </div>
+        <br>
+    </div>
+    <br>
+    <!-- fin Cuerpo, informacion del bacteriologo-->
+
+    <!-- Cuerpo, consultas-->
+    <div class="container" style="background-color: white;">
+        <div class="row" style="margin-left: 10px;">
+            <div class="col-lg-12 col-md-12 col-sm-12 " style="margin-top: 20px;">
+                <h4 style="opacity: 70%;"> Area de consultas </h4>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 " style="margin-top: 20px;">
+                <form id="formSelect" class="d-flex" autocomplete="off">
+                    <select id="select" onchange="consultar()" class="form-select" style="margin-left: 50%; width: 35%;"
+                        aria-label="Default select example">
+                        <option selected disabled>Consultas</option>
+                        <option value="1">Inner join</option>
+                        <option value="2">Left join</option>
+                        <option value="3">Avg</option>
+                        <option value="4">Max</option>
+                        <option value="5">Min</option>
+                        <option value="6">Count</option>
+                        <option value="7">Sum</option>
+                    </select>
+                </form>
+                <br><br>
+                <h5><i  id="title"></i></h5>
+                <h5 id="1" style="display: none;"><i>Solicitudes de laboratorio pendientes</i></h>
+                <h5 id="2" style="display: none;"><i>Solicitudes de laboratorio pendientes y con resultados</i></h>
+                <h5 id="3" style="display: none;"><i>Promedio de edad entre los pacientes</i></h>
+                <h5 id="4" style="display: none;"><i>Máxima edad entre los pacientes </i></h>
+                <h5 id="5" style="display: none;"><i>Minima edad entre los pacientes </i></h>
+                <h5 id="6" style="display: none;"><i>Cantidad de pacientes ingresados por el sistema</i></h>
+                <h5 id="7" style="display: none;"><i>Suma de las edades de los pacientes</i></h>
+
+            </div>
+
+            <table class="table table-dark  table-striped" id="tableInner" style="display: none; ">
+                <thead>
+                    <tr>
+                        <th scope="col">No. Orden</th>
+                        <th scope="col">Paciente</th>
+                        <th scope="col">Sede</th>
+                        <th scope="col">Servicio</th>
+                        <th scope="col">Fecha solicitud</th>
+                    </tr>
+                </thead>
+                <tbody id="cuerpoInner">
+                    <tr>
+
+                    </tr>
+                </tbody>
+            </table>
+
+            <table class="table table-dark  table-striped" id="tableLeft" style="display: none; ">
+                <thead>
+                    <tr>
+                        <th scope="col">No. Orden</th>
+                        <th scope="col">Paciente</th>
+                        <th scope="col">Sede</th>
+                        <th scope="col">Servicio</th>
+                        <th scope="col">Fecha solicitud</th>
+                        <th scope="col">No. Respuesta</th>
+                        <th scope="col">Bacteriologo</th>
+                        <th scope="col">Fecha respuesta</th>
+                    </tr>
+                </thead>
+                <tbody id="cuerpoLeft">
+                    <tr>
+
+                    </tr>
+                </tbody>
+            </table>
+
+            <table class="table table-dark  table-striped" id="tableAvg" style="display: none; ">
+                <thead>
+                    <tr>
+                        <th scope="col">Edad Promedio</th>
+                    </tr>
+                </thead>
+                <tbody id="cuerpoAvg">
+                    <tr>
+
+                    </tr>
+                </tbody>
+            </table>
+
+            <table class="table table-dark  table-striped" id="tableMax" style="display: none; ">
+                <thead>
+                    <tr>
+                        <th scope="col">Edad maxima</th>
+                    </tr>
+                </thead>
+                <tbody id="cuerpoMax">
+                    <tr>
+
+                    </tr>
+                </tbody>
+            </table>
+
+            <table class="table table-dark  table-striped" id="tableMin" style="display: none; ">
+                <thead>
+                    <tr>
+                        <th scope="col">Edad minima</th>
+                    </tr>
+                </thead>
+                <tbody id="cuerpoMin">
+                    <tr>
+
+                    </tr>
+                </tbody>
+            </table>
+
+            <table class="table table-dark  table-striped" id="tableCount" style="display: none; ">
+                <thead>
+                    <tr>
+                        <th scope="col">Pacientes ingresados</th>
+                    </tr>
+                </thead>
+                <tbody id="cuerpoCount">
+                    <tr>
+
+                    </tr>
+                </tbody>
+            </table>
+
+            <table class="table table-dark  table-striped" id="tableSum" style="display: none; ">
+                <thead>
+                    <tr>
+                        <th scope="col">Suma de edades</th>
+                    </tr>
+                </thead>
+                <tbody id="cuerpoSum">
+                    <tr>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <br>
+    </div>
+    <br>
+
+    <!-- footer-->
+    <div class="container" style="background-color: white;">
+        <div class="row" style="margin-left: 10px;">
+            <div class="col-lg-12 col-md-12 col-md-12 col-12" style="margin-top: 20px; text-align: center;">
+                <hr style="width: 98%;">
+                <img src="../img/My project (1).png" width="162px" style="opacity: 70%; min-width: 80px;" alt="">
+                <p style="opacity: 70%;">Copyright @2021 Isaac PzB.</p>
+            </div>
+        </div>
+        <br>
+    </div>
+
+</body>
+
+</html>

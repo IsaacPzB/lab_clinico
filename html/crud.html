@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--CSS-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!--JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+    <link rel="icon" href="../img/microscope.png">
+    <title>Lab. Clinico (CRUD)</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="../js/crud.js"></script>
+    <script src="../js/login.js"></script>
+
+</head>
+
+<body style="background-color: lightblue;">
+
+    <!-- Encabezado-->
+    <div style="background-color: white;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2 col-md-2 col-sm-2 col-1">
+                    <img src="../img/My project (1).png" class="rounded float-sm-start"
+                        style=" margin-left: 30%; margin-top: 20px;" width="200px" height="85px">
+                </div>
+                <div class="col-lg-10 col-md-10 col-sm-10 col-11"
+                    style="margin-top: 40px; margin-right: auto; margin-bottom: 20px;">
+                    <nav class="navbar navbar-expand-lg navbar-light">
+                        <a class="navbar-brand" href="#"></a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                            aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav mx-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="">INICIO</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="">INGRESAR RESULTADOS</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="consultas.html">CONSULTAS</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="">HELPS</a>
+                                </li>
+                                <hr>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="../index.html">| CERRAR SESIÓN |</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fin encabezado-->
+
+    <!-- Cuerpo, informacion del bacteriologo-->
+    <br>
+    <div class="container" style="background-color: white;">
+        <div class="row" style="margin-left: 10px;">
+            <div style="margin-top: 20px; ">
+                <img src="../img/ejeUser.jfif" width="120px"
+                    style="opacity: 80%; min-width: 105px; border-radius: 100%; float: left; margin-right: 20px;"
+                    alt="">
+                <h2 id="nombre" style="opacity: 70%; margin-top: 20px;">
+                    <script>
+                        us();
+                    </script>
+                </h2>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 " style="margin-top: 20px; text-align: end;">
+                <h5 style="opacity: 80%; margin-right: 20px;"> Bacteriologo</h5>
+            </div>
+        </div>
+        <br>
+    </div>
+    <br>
+    <!-- Cuerpo, formulario-->
+
+    <div class="container" style="background-color: white;">
+        <div class="row" style="margin-left: 10px;">
+            <div class="col-lg-12 col-md-12 col-sm-12 " style="margin-top: 20px;">
+                <h4 style="opacity: 70%;"> Area de trabajo </h4>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 " style="margin-top: 20px;">
+                <form id="formSearch" class="d-flex" autocomplete="off">
+                    <input style="margin-left: 40%; width: 50%;" class="form-control me-2" type="search"
+                        placeholder="Buscar solicitudes por paciente" id="search" aria-label="Search">
+                    <button class="btn btn-outline-success" id="buscar" onclick="solicitud()"
+                        type="button">Buscar</button>
+                </form>
+                <p id="msg" style="text-align: end; margin-right: 130px; display: none;">No se encontró registro!
+                </p>
+                <br>
+                <table class="table table-dark  table-striped" id="tablePaciente" style="display: none; ">
+                    <thead>
+                        <tr>
+                            <th scope="col">No. Orden</th>
+                            <th scope="col">Paciente</th>
+                            <th scope="col">Num. Identificacion</th>
+                            <th scope="col">Sede</th>
+                            <th scope="col">Tipo de Servicio</th>
+                            <th scope="col">Fecha solicitud</th>
+                            <th scope="col">Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cuerpoPaciente">
+                        <tr>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+                <h5 style="opacity: 80%;"> Resultados del Hemograma </h5>
+                <br>
+                <form id="formCrud" autocomplete="off">
+                    <div class="row">
+                        <div class="input-group mb-3" style="width: 30%;">
+                            <span class="input-group-text" id="basic-addon1"><img
+                                    src="../img/icons8-orden-de-compra-64.png" style="opacity: 50%;" width="24px"
+                                    alt=""></span>
+                            <input style="border-radius: 5px;" type="number" class="form-control" id="orden" required
+                                placeholder="No. Orden">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            <input style="border-radius: 5px;" type="number" class="form-control" id="wbc" required
+                                placeholder="WBC">
+                        </div>
+                        <div class="col-4">
+                            <input style="border-radius: 5px;" type="number" class="form-control" id="neu" required
+                                placeholder="NEU%">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-4">
+                            <input style="border-radius: 5px;" type="number" class="form-control" id="lym" required
+                                placeholder="LYM%">
+                        </div>
+                        <div class="col-4">
+                            <input style="border-radius: 5px;" type="number" class="form-control" id="mon" required
+                                placeholder="MON%">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-4">
+                            <input style="border-radius: 5px;" type="number" class="form-control" id="rbc" required
+                                placeholder="RBC">
+                        </div>
+                        <div class="col-4">
+                            <input style="border-radius: 5px;" type="number" class="form-control" id="hgb" required
+                                placeholder="HGB">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-4">
+                            <input style="border-radius: 5px;" type="number" class="form-control" id="hct" required
+                                placeholder="HCT">
+                        </div>
+                        <div class="col-4">
+                            <input style="border-radius: 5px;" type="number" class="form-control" id="pit" required
+                                placeholder="PIT">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-4">
+                            <input style="border-radius: 5px;" type="number" class="form-control" id="idPaciente" required
+                                placeholder="Identificación del paciente">
+                        </div>
+                        <div class="col-4">
+                            <input style="border-radius: 5px;" type="number" class="form-control" id="bacteriologo"
+                                required placeholder="Identificación del bacteriologo">
+                        </div>
+                    </div>
+                    <br>
+                    <button type="button" id="enviar" style="border-radius: 5px; padding-top: 7px; padding-bottom: 7px;
+                    padding-left: 25px; padding-right: 25px; background-color: #495597; color: aliceblue; 
+                    border-color: aliceblue;" onclick="insertarResultados()">Enviar</button>
+
+                    <button type="button" id="put" style="border-radius: 5px; padding-top: 7px; padding-bottom: 7px;
+                    padding-left: 25px; padding-right: 25px; background-color: goldenrod; color: aliceblue; 
+                    border-color: aliceblue; margin-left: 30px; visibility: hidden;"
+                        onclick="actualizar()">Actualizar</button>
+
+                    <button type="button" id="ver" style="border-radius: 5px; padding-top: 7px; padding-bottom: 7px;
+                    padding-left: 25px; padding-right: 25px; background-color: rgb(7, 129, 7); color: aliceblue; 
+                    border-color: aliceblue; margin-left: 30px;" onclick="resultados()">Resultados</button>
+                </form>
+
+                <br>
+
+                <table class="table table-dark  table-striped" id="tableResultados" style="display: none; ">
+                    <thead>
+                        <tr>
+                            <th scope="col">WBC</th>
+                            <th scope="col">NEU%</th>
+                            <th scope="col">LYM%</th>
+                            <th scope="col">MON%</th>
+                            <th scope="col">RCB</th>
+                            <th scope="col">HGB</th>
+                            <th scope="col">HCT</th>
+                            <th scope="col">PIT</th>
+                            <th scope="col">Paciente</th>
+                            <th scope="col">Bacteriologo</th>
+                            <th scope="col">No. Orden</th>
+                            <th scope="col">Fec. Respuesta</th>
+                            <th scope="col">Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cuerpoResultados">
+                        <tr>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <br>
+    </div>
+    <br>
+    <!-- footer-->
+
+    <div class="container" style="background-color: white;">
+        <div class="row" style="margin-left: 10px;">
+            <div class="col-lg-12 col-md-12 col-md-12 col-12" style="margin-top: 20px; text-align: center;">
+                <hr style="width: 98%;">
+                <img src="../img/My project (1).png" width="162px" style="opacity: 70%; min-width: 80px;" alt="">
+                <p style="opacity: 70%;">Copyright @2021 Isaac PzB.</p>
+            </div>
+        </div>
+        <br>
+    </div>
+
+
+</body>
+
+</html>
