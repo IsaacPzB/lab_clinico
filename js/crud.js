@@ -17,7 +17,7 @@ function solicitud() {
         let infoForm = {};
 
         axios
-            .get("http://127.0.0.1:3000/solicitud/" + paciente)
+            .get("http://isaacpzb.pythonanywhere.com/solicitud/" + paciente)
             .then(function (response) {
                 console.log(response);
                 console.log(response.data[0].nombre);
@@ -94,7 +94,7 @@ function resultados() {
     let infoForm = {};
 
     axios
-        .get("http://127.0.0.1:3000/resultados")
+        .get("http://isaacpzb.pythonanywhere.com/resultados")
         .then(function (response) {
             console.log(response);
 
@@ -216,7 +216,7 @@ function actualizar() {
         id_solicitud: orden
     };
 
-    axios.put('http://127.0.0.1:3000/actualizarResultados', data)
+    axios.put('http://isaacpzb.pythonanywhere.com/actualizarResultados', data)
         .then(function (response) {
             alert(response.data.Informacion)
             resultados();
@@ -236,7 +236,7 @@ function onDelete(td) {
     selectedRow = td.parentElement.parentElement;
     let data = selectedRow.cells[10].innerHTML;
 
-    axios.delete('http://127.0.0.1:3000/eliminarResultados/' +data,)
+    axios.delete('http://isaacpzb.pythonanywhere.com/eliminarResultados/' +data,)
         .then(function (response) {
             console.log(data)
             alert(response.data.Informacion)
@@ -282,7 +282,7 @@ function insertarResultados() {
     };
 
     axios
-        .post("http://127.0.0.1:3000/insertarResultados", data)
+        .post("http://isaacpzb.pythonanywhere.com/insertarResultados", data)
         .then(function (response) {
             console.log(response.data);
             let msg = JSON.stringify(response.data);
@@ -298,7 +298,7 @@ function insertarResultados() {
                 document.getElementById("idPaciente").disabled = false;
                 document.getElementById("tablePaciente").style.display = "none";
                 axios
-                    .put("http://127.0.0.1:3000/insertarResultados", data02)
+                    .put("http://isaacpzb.pythonanywhere.com/insertarResultados", data02)
                     .then(function (response) {
                         console.log(response);
                     })

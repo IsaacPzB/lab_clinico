@@ -14,7 +14,7 @@ function login() {
     };
 
     axios
-      .post("http://127.0.0.1:3000/login", data)
+      .post("http://isaacpzb.pythonanywhere.com/login", data)
       .then(function (response) {
         console.log(response);
         if (response) {
@@ -31,7 +31,7 @@ function login() {
 
 function us() {
   axios
-    .get("http://127.0.0.1:3000/guard")
+    .get("http://isaacpzb.pythonanywhere.com/guard")
     .then(function (response) {
       console.log(response.data[0].nombre)
       document.getElementById("nombre").innerHTML = response.data[0].nombre
